@@ -8,7 +8,7 @@ import lombok.SneakyThrows;
 import operations.PersonOperations;
 
 
-@WebServlet("/calc_height")
+@WebServlet("/persons/heights/sum")
 public class HeightCalculationServlet extends HttpServlet {
 
     private XMLConverter converter;

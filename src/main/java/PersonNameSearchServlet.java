@@ -10,7 +10,7 @@ import operations.PersonOperations;
 
 import java.util.List;
 
-@WebServlet("/search_by_name")
+@WebServlet("/persons/name/search")
 public class PersonNameSearchServlet extends HttpServlet {
     private XMLConverter converter;
     private PersonOperations po;

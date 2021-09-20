@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@WebServlet("/person")
+@WebServlet("/persons")
 public class PersonOperationsServlet extends HttpServlet {
 
     private XMLConverter converter;

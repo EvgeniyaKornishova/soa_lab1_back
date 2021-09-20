@@ -10,7 +10,7 @@ import operations.PersonOperations;
 
 import java.util.List;
 
-@WebServlet("/uniq_locations")
+@WebServlet("/persons/locations/unique")
 public class UniqLocationsSearchServlet extends HttpServlet {
     private XMLConverter converter;
     private PersonOperations po;
