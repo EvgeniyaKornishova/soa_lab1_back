@@ -5,7 +5,6 @@ import javax.xml.namespace.QName;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.List;
-import java.util.Optional;
 
 public class XMLConverter {
     @SuppressWarnings({"rawtypes", "unchecked"})
@@ -49,8 +48,14 @@ public class XMLConverter {
     public <T> T fromStr(String str, Class<T> tClass) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(tClass);
 
-        Unmarshaller unmarshaller = context.createUnmarshaller();
 
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        unmarshaller.setEventHandler(event -> {
+            if (event.getLinkedException() instanceof NumberFormatException) {
+                throw new NumberFormatException(String.format("%s", event.getMessage()));
+            }
+            return false;
+        });
         return (T) unmarshaller.unmarshal(new StringReader(str));
     }
 }

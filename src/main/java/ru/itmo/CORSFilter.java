@@ -1,14 +1,19 @@
 package ru.itmo;
 
-import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 // For further use
-@WebFilter("*")
+@WebFilter("/*")
 public class CORSFilter implements Filter {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (response instanceof HttpServletResponse) {
@@ -16,6 +21,11 @@ public class CORSFilter implements Filter {
             addCorsHeader(alteredResponse);
         }
         chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+
     }
 
     public static void addCorsHeader(HttpServletResponse response) {

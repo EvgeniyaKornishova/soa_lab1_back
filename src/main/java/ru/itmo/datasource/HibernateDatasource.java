@@ -1,5 +1,6 @@
 package ru.itmo.datasource;
 
+import ru.itmo.ConfigReader;
 import  ru.itmo.entities.DBCoordinates;
 import  ru.itmo.entities.DBLocation;
 import  ru.itmo.entities.DBPerson;
@@ -23,13 +24,15 @@ public class HibernateDatasource {
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
+                ConfigReader conf = new ConfigReader();
+
                 Configuration configuration = new Configuration();
 
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "org.postgresql.Driver");
-                settings.put(Environment.URL, "jdbc:postgresql://pg:5432/studs");
-                settings.put(Environment.USER, "s265099");
-                settings.put(Environment.PASS, "nfn012");
+                settings.put(Environment.URL, conf.getDb_url());
+                settings.put(Environment.USER, conf.getUser());
+                settings.put(Environment.PASS, conf.getPass());
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
 
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");

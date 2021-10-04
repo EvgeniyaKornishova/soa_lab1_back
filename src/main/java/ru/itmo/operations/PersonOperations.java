@@ -52,6 +52,10 @@ public class PersonOperations {
 
     public List<DBPerson> listPerson(PersonFilter filter, PersonSorter sorter, Paginator paginator) {
         try (Session session = HibernateDatasource.getSessionFactory().openSession()) {
+//            Query query = session.createQuery("");
+//            return query.list();
+
+
             CriteriaBuilder criteria = session.getCriteriaBuilder();
             CriteriaQuery<DBPerson> criteria_query = criteria.createQuery(DBPerson.class);
             Root<DBPerson> root = criteria_query.from(DBPerson.class);
@@ -177,7 +181,7 @@ public class PersonOperations {
             criteria_query.from(DBLocation.class);
 
             List<DBLocation> locations = session.createQuery(criteria_query).getResultList();
-            List<DBLocation> uniq_locations = new java.util.ArrayList<>(List.of());
+            List<DBLocation> uniq_locations = new java.util.ArrayList<>();
 
             for (DBLocation loc : locations){
                 boolean flag = true;

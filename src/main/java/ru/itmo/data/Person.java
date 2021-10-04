@@ -1,11 +1,12 @@
 package ru.itmo.data;
 
-import  ru.itmo.XMLUtils.LocalDateTimeXMLAdapter;
-import  ru.itmo.entities.DBPerson;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import ru.itmo.XMLUtils.ColorXMLAdapter;
+import ru.itmo.XMLUtils.LocalDateTimeXMLAdapter;
+import ru.itmo.XMLUtils.NationalityXMLAdapter;
+import ru.itmo.entities.DBPerson;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -40,10 +41,13 @@ public class Person {
 
     private Float height; //Значение поля должно быть больше 0
 
+    @XmlJavaTypeAdapter(ColorXMLAdapter.class)
     private Color eyeColor; //Поле может быть null
 
+    @XmlJavaTypeAdapter(ColorXMLAdapter.class)
     private Color hairColor; //Поле может быть null
 
+    @XmlJavaTypeAdapter(NationalityXMLAdapter.class)
     private Country nationality; //Поле не может быть null
 
     private Location location; //Поле не может быть null

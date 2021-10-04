@@ -1,6 +1,8 @@
 package ru.itmo.pagination;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
+import lombok.Getter;
 import org.hibernate.query.Query;
 
 public class Paginator {
@@ -23,7 +25,7 @@ public class Paginator {
         else
             pageId = null;
 
-        if (pageSize == null || pageSize <= 0)
+        if (pageSize == null || pageSize == 0)
             pageSize = null;
     }
 

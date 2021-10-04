@@ -1,11 +1,13 @@
 package ru.itmo.data.validators;
-import  ru.itmo.data.Person;
 
-import javax.xml.bind.JAXBElement;
+import ru.itmo.data.Color;
+import ru.itmo.data.Country;
+import ru.itmo.data.Person;
+
 import javax.xml.bind.ValidationException;
-import javax.xml.namespace.QName;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PersonValidator implements Validator<Person> {
@@ -20,8 +22,8 @@ public class PersonValidator implements Validator<Person> {
     public PersonValidator() {
         coordinatesValidator = new CoordinatesValidator();
         locationValidator = new LocationValidator();
-        nullableFields = List.of("eyeColor", "hairColor");
-        prohibitedFields = List.of("id", "creationDate");
+        nullableFields = Arrays.asList("eyeColor", "hairColor");
+        prohibitedFields = Arrays.asList("id", "creationDate");
 //        correctForm = "Correct format:\n" +
 //                "<person>\n" +
 //                "    <name>String</name>\n" +
@@ -67,6 +69,7 @@ public class PersonValidator implements Validator<Person> {
 
         errorList.addAll(coordinatesValidator.validate(person.getCoordinates()));
         errorList.addAll(locationValidator.validate(person.getLocation()));
+
 
 //        if (!errorList.isEmpty()){
 //            errorList.add(correctForm);
